@@ -1,2 +1,2 @@
-# iskola-cheatsheet
+# Programozás cheatsheet
 Programozás anyagok emberi nyelven elmagyarázva
