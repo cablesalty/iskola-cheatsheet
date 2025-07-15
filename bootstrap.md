@@ -145,11 +145,7 @@ Például:
 </div>
 ```
 
-Ebben a példában mindegyik sor ugyan akkora, és nagy valszeg nagyobb, mint az ablakunk 100%-a és kilóg.
-
-Viszont, meg tudunk minden oszlopnak adni egy méretet. Egy sor az mindig **12 egységből** áll. Szóval hogyha azt szeretnénk, hogy mindegyik oszlop ugyan akkora legyen, akkor a 12-t elosztjuk 3 fele, szóval mindegyiknek 4 egységnyi helyet kell elfoglalniuk.
-
-Ezt be is tudjuk vinni kódba így:
+Ebben a példában mindegyik sor ugyan akkora, és mivel egy sor **mindig 12 egységből áll**, ezért ezt ezzel a kóddal is el tudjuk érni:
 ```html
 <div class="container">
     <div class="row">
@@ -158,6 +154,23 @@ Ezt be is tudjuk vinni kódba így:
         </div>
 
         <div class="col-4">
+            Oszlop
+        </div>
+
+        <div class="col-4">
+            Oszlop
+        </div>
+    </div>
+</div>
+```
+
+Viszont, meg tudunk minden oszlopnak külön adni egy méretet. Egy sor az mindig **12 egységből** áll. Szóval például ha egy 2:1 arányű sort akarunk csinálni, akkor az egyik col az 8 a másik meg 4 lesz.
+
+Ezt be is tudjuk vinni kódba így:
+```html
+<div class="container">
+    <div class="row">
+        <div class="col-8">
             Oszlop
         </div>
 
