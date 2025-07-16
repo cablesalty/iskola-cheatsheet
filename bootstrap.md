@@ -30,8 +30,8 @@ Leggyakrabban a [grid rendszerben](#row-és-a-col-grid) és a [containerek](#tá
 | --- | --- | --- |
 | Telefonos méret (small) | `sm` | &ge;576px |
 | Tablet méret (medium) | `md` | &ge;768px |
-| Asztali gép méret (large) | `lg` | &ge;992px |
-| Extra large | `xl` | &ge;1200px |
+|  (large) | `xl` | &ge;992px |
+| Asztali gép méret (large) | `xl` | &ge;1200px |
 
 # Tárolók - Containers
 A containerek segítenek nekünk egy **fix szélességű tárolót** készíteni. A feladatuk, hogy mindig egy előre megszabott szélességük legyen egy bizonyos [breakpoint](#breakpointok)-ig.
@@ -122,13 +122,19 @@ Próbáld ki ezt a HTML fájlt, és teszteld le a containereket:
 ```
 
 # Row és a col (grid rendszer)
+A row és a col rendszerét szerintem már mindannyian ismerjük, mert annyiszor volt a dolgozatokban. Kapunk egy sort, a sorba meg 12 egységnyi oszlopokat rakhatunk (lásd: [Hogyan működik?](#hogyan-működik-1))
+
+A grid rendszer a **mobile-first** rendszert követi, ez azt jelenti, hogy elsőnek mobilokra optimalizálunk, utánna jönnek csak a gépek.
 
 ## Hogyan működik?
 A `.row` class ad nekünk egy sort, amibe oszlopokat, vagyis `.col`-okat rakhatunk.
 
+> [!WARNING]  
+> Ezekben a példákban én a `.row`-ot egy `.container-fluid`-ba rakom. Viszont, hogy neked mibe kell majd rakni, az dolgozatoknál feladattól és leírástól függ.
+
 Például:
 ```html
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             Oszlop
@@ -145,11 +151,11 @@ Például:
 </div>
 ```
 
-Ebben a példában mindegyik sor ugyan akkora, és mivel egy sor **mindig 12 egységből áll**, ezért ezt ezzel a kóddal is el tudjuk érni:
+Egy sor **mindig 12 egységből áll**. Ez azt jelenti, hogy a col-ok össz. szélessége nem lehet se kisebb, se nagyobb mint 12. Viszont abban a határban szabadon tudjuk őket méretezni. Például:
 ```html
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-4">
+        <div class="col-6">
             Oszlop
         </div>
 
@@ -157,18 +163,24 @@ Ebben a példában mindegyik sor ugyan akkora, és mivel egy sor **mindig 12 egy
             Oszlop
         </div>
 
-        <div class="col-4">
+        <div class="col-2">
             Oszlop
         </div>
     </div>
 </div>
 ```
 
-Viszont, meg tudunk minden oszlopnak külön adni egy méretet. Egy sor az mindig **12 egységből** áll. Szóval például ha egy 2:1 arányű sort akarunk csinálni, akkor az egyik col az 8 a másik meg 4 lesz.
+### Arányok
+Előfordulhat, hogy néhány feladatban arányokkal kell majd számolnunk. Így tudjuk az arányokat col méretekre átváltani.
 
-Ezt be is tudjuk vinni kódba így:
+
+Például: szeretnénk két colt, **4:2 aránnyal**.
+1. Összeadod az arányban a számokat. *4+2=6*
+2. Elosztjuk 12-vel. *12/6=2*
+3. Az eredménnyel megszorozzuk az arányban lévő számokat. *4×2=8* és *2×2=4*
+És ki is jött. Az első col az 8, a második 4 lesz. Kódban így néz ki:
 ```html
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-8">
             Oszlop
@@ -180,3 +192,28 @@ Ezt be is tudjuk vinni kódba így:
     </div>
 </div>
 ```
+
+### Reszponzivítás (breakpointok)
+A grid rendszer támogatja a breakpointok alkalmazását is. Nagy eséllyel, asztali méretben gyakran elfér két col egymás mellett. Viszont a mobilokra ez már nem teljesen igaz. Hiába férne el 2 vagy 3 col egymás mellett mobilon, olyan vékonyak lennének hogy nem lehetne normálisan használni az oldalt.
+
+Viszont, ezért lehet breakpointokat rakni a col-okra!
+```html
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-xl-8">
+            Oszlop
+        </div>
+
+        <div class="col-12 col-xl-4">
+            Oszlop
+        </div>
+    </div>
+</div>
+```
+
+Vezessük is le, mit csinál ez a kód.
+
+a `.col-12` megszabja, hogy **mobil méretben és a fölött** 12 egységet, azaz az egész sort foglalja el. Ezt azt fogja eredményezni, hogy a két oszlop egymás alá kerül.
+
+**Q:** **De várj!** Miért nem adunk meg rá breakpointot?  
+**A:** Mivel a bootstrap grid rendszer az **mobile-first**. Ez azt jelenti, hogy alapnak vesszük a mobiltelefonokat, és utánna pedig ráoptimalizálunk gépekre. Ezért `.col-12` és nem `.col-sm-12`, mivel nekünk alap, hogy a felhasználó mobilon van, és alapból így nézne ki az oldal. Csak az **alap**, mobil beállítás után térünk rá a gépekre (`col-xl-8`).
