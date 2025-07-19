@@ -1,11 +1,13 @@
 <h1 align="center">Bootstrap</h1>
-Ez a dokumentum elmagyarázza az összes bootstrapes anyagot amit kilencedikben tanultunk. Ha valamit kihagytam, nyissatok egy issue-t vagy írjatok rám.
+
+
+Ez a dokumentum elmagyarázza az összes bootstrapes anyagot amit kilencedikben tanultunk. Ha valamit kihagytam, [nyissatok egy issue-t](https://github.com/cablesalty/iskola-cheatsheet/issues) vagy írjatok rám.
 
 ---
 
 # Kezdés
 > [!NOTE]  
-> **Minimális magyarázat erre a szekcióra.** Ha nem tudsz ennyi segítség nélkül berakni egy CSS fájlt a dokumentumodba, akkor sajnálom.
+> **Minimális magyarázat erre a szekcióra.** Ha nem tudsz ennyi segítséggel berakni egy CSS fájlt a dokumentumodba, akkor sajnálom.
 
 
 Mielőtt a bootstrapet elkezdenénk használni, be kell valahogy **importálnunk** a HTML dokumentumunkba. Erre a szükséges linkeket megtaláljuk a [Bootstrap hivatalos dokumentációjában. (getbootstrap.com)](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
@@ -18,25 +20,24 @@ Itt van például a Bootstrap 5.3.7-nek a linkje
 | CSS    | https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css      |
 | JS     | https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js |
 
-Ezeket a linkeket be tudjuk másolni `<link>` vagy `<script>` tagokba hogy belerakjuk a dokumentumunkba.
+Ezeket a linkeket be tudjuk másolni `<link>` és/vagy `<script>` tagokba hogy belerakjuk a dokumentumunkba.
 
 # Breakpointok
 A breakpointok előre megszabott *törésvonalak*, amik segítenek behatárolni egy objektumnak, vagy egy kijelzőnek a méretét.
 
-Leggyakrabban a [grid rendszerben](#row-és-a-col-grid) és a [containerek](#tárolók---containers)nél használjuk, hogy megszabjuk melyik törésvonal alatt töltse ki a szülőobjektumnak a 100%-át.
+Leggyakrabban a [grid rendszerben](#row-és-a-col-grid) és a [containerek](#tárolók---containers)nél használjuk, általában hogy kijelzőméretek alapján mennyi helyet töltsön ki egy objektum.
 
 ### Itt vannak azok a breakpointok, amiket órán használtunk:
 | Megnevezés | Breakpoint | Kijelző/Szülőobjektum méret |
 | --- | --- | --- |
 | Telefonos méret (small) | `sm` | &ge;576px |
 | Tablet méret (medium) | `md` | &ge;768px |
-|  (large) | `xl` | &ge;992px |
 | Asztali gép méret (large) | `xl` | &ge;1200px |
 
 # Tárolók - Containers
-A containerek segítenek nekünk egy **fix szélességű tárolót** készíteni. A feladatuk, hogy mindig egy előre megszabott szélességük legyen egy bizonyos [breakpoint](#breakpointok)-ig.
+A containerek segítenek nekünk egy **fix szélességű tárolót** készíteni. A feladatuk, hogy [breakpointokhoz](#breakpointok) képest egy fix méretük legyen.
 
-[A hivatalos angol dokumentációt meg találod itt.](https://getbootstrap.com/docs/5.3/layout/containers/)
+[A hivatalos angol dokumentációt erről a szekcióról megtalálod itt.](https://getbootstrap.com/docs/5.3/layout/containers/)
 
 > [!IMPORTANT]  
 > A "fix szélesség" alól a `.container-fluid` kivételt szolgál, mivel az mindig a szülő tároló 100%-át foglalja el.
@@ -46,7 +47,7 @@ Tegyük fel, hogy raksz egy container-t egy `<div>`-re, valahogy így:
 ```html
 <div class="container"></div>
 ```
-Ennek a `<div>`-nek nincsen *szülőobjektuma*, azaz nem egy másik `<div>`-be vagy más tagban van, hanem csak magában.  
+Ennek a `<div>`-nek nincsen *szülőobjektuma*, azaz nem egy másik `<div>`-be vagy más objektumban van, hanem csak magában.  
 Például egy teljes HTML dokumentum amiben benne van így nézne ki:
 ```html
 <!DOCTYPE html>
@@ -61,9 +62,9 @@ Például egy teljes HTML dokumentum amiben benne van így nézne ki:
 </body>
 </html>
 ```
-Ebben a példában a container class beállít egy megszabott szélességet arra a `<div>`-re a kijelződ, vagy a böngészőablakod mérete szerint.
+Ebben a példában a `.container` beállít egy megszabott szélességet arra a `<div>`-re a kijelződ vagy a böngészőablakod mérete szerint.
 
-### Szóval itt a definíció:
+### Nem hivatalos fogalom/leírás:
 Egy container fix szélessége breakpointonkénk változik, és addig maradnak fix szélességűek, ameddig a szülőobjektumának szélessége el nem éri a megszabott breakpoint alatti határt. Utánna a szülőobjektum 100%-át tölti ki. Például egy `.container-md` addig marad fix szélességű, ameddig a szülőobjektum szélessége az `md` breakpointnál nem kisebb.
 
 ---
@@ -81,7 +82,7 @@ Itt van egy táblázat az összes container variációra minden breakpoint köz�
 | `.container-fluid` | 100% | 100% | 100% | 100% | 100% | 100% |
 
 ## Container-fluid??
-Igen, a container fluid **minden esetben** a szülőobjektum 100%-át tölti ki.
+Igen, a container fluid **minden esetben** a szülőobjektum 100%-át tölti ki, szóval nem "fix szélességű".
 
 
 ## Szintaxis:
@@ -115,16 +116,16 @@ Próbáld ki ezt a HTML fájlt, és teszteld le a containereket:
     <div class="bg-success text-light mb-2 p-2 rounded container-xl">.container-xl</div>
     <div class="bg-success text-light mb-2 p-2 rounded container-xxl">.container-xxl</div>
     <div class="bg-success text-light mb-2 p-2 rounded container-fluid">.container-fluid</div>
-    <br>
-    <p>&copy 2025 Szabó Patrik</p>
 </body>
 </html>
 ```
 
-# Row és a col (grid rendszer)
-A row és a col rendszerét szerintem már mindannyian ismerjük, mert annyiszor volt a dolgozatokban. Kapunk egy sort, a sorba meg 12 egységnyi oszlopokat rakhatunk (lásd: [Hogyan működik?](#hogyan-működik-1))
+# Row és col (grid rendszer)
+A row és a col rendszerét szerintem már mindannyian ismerjük, kb minden bootstrapes dolgozatban benne volt. A `.row` ad nekünk egy sort, amibe 12 egységnyi `.col`-okat, azaz oszlopokat rakhatunk.
 
-A grid rendszer a **mobile-first** rendszert követi, ez azt jelenti, hogy elsőnek mobilokra optimalizálunk, utánna jönnek csak a gépek.
+[A hivatalos angol dokumentációt erről a szekcióról megtalálod itt.](https://getbootstrap.com/docs/5.3/layout/grid/)
+
+Mint minden más a bootstrapben, a grid rendszer is a **mobile-first** rendszert követi. Ez azt jelenti, hogy elsőnek mobilokra optimalizálunk, utánna jönnek csak a gépek.
 
 ## Hogyan működik?
 A `.row` class ad nekünk egy sort, amibe oszlopokat, vagyis `.col`-okat rakhatunk.
@@ -194,7 +195,7 @@ Például: szeretnénk két colt, **4:2 aránnyal**.
 ```
 
 ### Reszponzivítás (breakpointok)
-A grid rendszer támogatja a breakpointok alkalmazását is. Nagy eséllyel, asztali méretben gyakran elfér két col egymás mellett. Viszont a mobilokra ez már nem teljesen igaz. Hiába férne el 2 vagy 3 col egymás mellett mobilon, olyan vékonyak lennének hogy nem lehetne normálisan használni az oldalt.
+A grid rendszer támogatja a breakpointok alkalmazását is. Nagy eséllyel, asztali méretben gyakran elfér két col egymás mellett, viszont a mobilokra ez már nem teljesen igaz. Hiába férne el 2 vagy 3 col egymás mellett mobilon, olyan vékonyak lennének hogy nem lehetne normálisan használni az oldalt.
 
 Viszont, ezért lehet breakpointokat rakni a col-okra!
 ```html
@@ -211,9 +212,26 @@ Viszont, ezért lehet breakpointokat rakni a col-okra!
 </div>
 ```
 
-Vezessük is le, mit csinál ez a kód.
+Vezessük is le, mit csinál ez a kód:
 
-a `.col-12` megszabja, hogy **mobil méretben és a fölött** 12 egységet, azaz az egész sort foglalja el. Ezt azt fogja eredményezni, hogy a két oszlop egymás alá kerül.
+A `.col-12` megszabja, hogy **alapból** 12 egységet, azaz az egész sort foglalja el. Ezzel azt érjük el, hogy a két oszlop egymás alá kerül mobil és tablet nézetben. A `.col-xl-4` és `.col-xl-8` ezt felülírja, és megmondja hogy asztali méretben 2:1 arányt foglaljon el.
 
-**Q:** **De várj!** Miért nem adunk meg rá breakpointot?  
-**A:** Mivel a bootstrap grid rendszer az **mobile-first**. Ez azt jelenti, hogy alapnak vesszük a mobiltelefonokat, és utánna pedig ráoptimalizálunk gépekre. Ezért `.col-12` és nem `.col-sm-12`, mivel nekünk alap, hogy a felhasználó mobilon van, és alapból így nézne ki az oldal. Csak az **alap**, mobil beállítás után térünk rá a gépekre (`col-xl-8`).
+**Q:** *De várj!* Miért nem adunk meg rá breakpointot, ha csak mobil és tablet méretre kell elfoglalni az egész sort?  
+**A:** Mivel a bootstrap az **mobile-first**. Ez azt jelenti, hogy alapnak vesszük a mobiltelefonokat, és utánna pedig ráoptimalizálunk gépekre. Ezért `.col-12` és nem `.col-sm-12`, mivel nekünk alap, hogy a felhasználó mobilon van, és alapból így nézne ki az oldal. Csak az **alap**, mobil beállítás után térünk rá a gépekre (`col-xl-8`).
+
+## Szintaxis:
+```
+.col-{breakpoint}-{méret}
+```
+Például:
+```
+.col-xl-6
+```
+*..vagy*
+```
+.col-6
+```
+**A breakpoint megadása opcionális!**
+
+# Margin és padding
+[A hivatalos angol dokumentációt erről a szekcióról megtalálod itt.](https://getbootstrap.com/docs/5.3/utilities/spacing/#margin-and-padding)
