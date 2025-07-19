@@ -234,4 +234,61 @@ Például:
 **A breakpoint megadása opcionális!**
 
 # Margin és padding
+A margin és padding a legegyszerűbb része a bootstrapnek.
+
 [A hivatalos angol dokumentációt erről a szekcióról megtalálod itt.](https://getbootstrap.com/docs/5.3/utilities/spacing/#margin-and-padding)
+
+> [!NOTE]  
+> **Minimális magyarázat erre a szekcióra.** Négy órát aludtam, és most kicsit sincs kedvem túlmagyarázni ezt.
+
+## Szintaxis:
+Az `m` jelöli a külső margót (margin)  
+A `p` jelöli a belső margót (padding)
+
+```
+.{m vagy p}{irány}-{breakpoint}-{méret}
+```
+Például, 5-ös külső felső margó:
+```
+.mt-5
+```
+*..vagy* 3-as belső margó
+```
+.p-3
+```
+**A breakpoint és az irány(ok) megadása opcionális!**
+
+
+## Hogyan működik?
+```html
+<div>Szevasz!</div>
+```
+Tegyük fel, hogy erre a `<div>`-re szeretnénk rakni egy *5-ös belső margót*.
+
+```html
+<div class="p-5">Szevasz!</div>
+```
+
+Ha nem adunk meg irányt, akkor minden oldalra vonatkozni fog.
+
+Rakjunk még erre egy külső felső margót
+```html
+<div class="p-5 mt-3">Szevasz!</div>
+```
+
+Az `m` (vagy `p`) után tudunk rakni egy irányt/oldalt.
+
+A méret, amit meg kell adnod azt elmondja a dolgozat.
+
+## Oldalak
+- `t` - top
+- `b` - bottom
+- `s` - start (bal oldal)
+- `e` - end (jobb oldal)
+- `x` - jobb és bal oldal (x mint a koordinátarendszerekben)
+- `y` - top és bottom (y mint a koordinátarendszerekben)
+
+## Méretek
+- `0` - leveszi a margin-t vagy padding-et.
+- `1-5` - alap méretek
+- `auto` - beállítja a margin-t vagy padding-et automatára (mint CSSben a `margin: auto;`)
