@@ -271,7 +271,7 @@ Tegyük fel, hogy erre a `<div>`-re szeretnénk rakni egy *5-ös belső margót*
 
 Ha nem adunk meg irányt, akkor minden oldalra vonatkozni fog.
 
-Rakjunk még erre egy külső felső margót
+Rakjunk még erre egy külső felső 3-as margót
 ```html
 <div class="p-5 mt-3">Szevasz!</div>
 ```
@@ -292,3 +292,62 @@ A méret, amit meg kell adnod azt elmondja a dolgozat.
 - `0` - leveszi a margin-t vagy padding-et.
 - `1-5` - alap méretek
 - `auto` - beállítja a margin-t vagy padding-et automatára (mint CSSben a `margin: auto;`)
+
+# Háttér és szövegszín
+Bootstrappel be tudunk állítani szöveg vagy háttérszínt előre megszabott színekre.
+
+[A hivatalos angol dokumentációt erről a szekcióról megtalálod itt.](https://getbootstrap.com/docs/5.3/utilities/colors/#colors)
+
+## Alapszínek
+Az alapszínek felsorolva:
+- **primary**: kék
+
+- **info**: világoskék
+
+- **success**: zöld
+
+- **danger**: piros
+
+- **warning**: citromsárga
+
+- **white**: fehér
+
+- **black**: fekete
+
+- **dark**: "sötét"
+
+- **light**: "világos"
+
+- **reset**: visszaállítás
+
+## Alapszínek beállítása
+Szövegszínként:
+```
+.text-success
+```
+Így zöld lesz a szöveg.
+
+```
+.bg-danger
+```
+Így piros lesz a háttér.
+
+Teljes példa:
+```html
+<p class="text-success">Én zöld vagyok!</p>
+```
+
+## Sötétebb és világosabb
+A színeknek van még két variációja. Az `emphasis` és a `subtle`.
+
+Az `emphasis` egy sötétebb színt állít be **a szövegeknek**. Példáül:
+```html
+<p class="text-success-emphasis">Én sötétebb zöld vagyok!</p>
+```
+
+A `subtle` egy világosabb színt állít be **a háttereknek**. Például:
+```html
+<p class="bg-danger-subtle">Világosabb piros a háttérszínem!</p>
+```
+
+**FONTOS!** Az `emphasis` csak is **szövegre**, és a `subtle` csakis **háttérre** rakható.
